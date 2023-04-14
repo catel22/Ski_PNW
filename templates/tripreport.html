@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% endblock %}
+
+<!-- Displays different menu options based on whether user is logged in -->
+{% block login %}
+	{% if username != None %}
+		<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="logout">Log Out</a></li>
+	{% else %}
+		<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="signup">Sign Up</a></li>
+		<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="login">Log In</a></li>
+	{% endif %}
+{% endblock %}
+
+<!-- Title for web page -->
+{% block textbody %}
+	<header class="masthead" style="background-image: url('static/logo2.jpeg')">
+			<div class="container position-relative px-4 px-lg-5">
+					<div class="row gx-4 gx-lg-5 justify-content-center">
+							<div class="col-md-10 col-lg-8 col-xl-7">
+									<div class="page-heading">
+											<h1>Trip Reports</h1>
+											<span class="subheading">Pick your adventure based on conditions</span>
+									</div>
+							</div>
+					</div>
+			</div>
+	</header>
+
+	<!-- Form for user to fill out a trip report if they are logged in -->
+	<div class = "offset-xl-1">
+			{% if username != None %}
+				<h4>Hi {{username}}! Submit a trip report below.</h4>
+				<form method="POST" action="tripreport" class="form-floating">
+					Location: <input type="text" name="location"> <br>
+					Trip date: <input type="date" id="date" name="date"
+       		value="2021-12-12"
+       		min="2020-01-01" max="2022-12-12"><br>
+					Rating (1-10): <input type="text" name="rating"> <br>
+					Danger (1-10): <input type="text" name="danger"> <br>
+					Image: <input type="text" name="image"> <br>
+					Other notes: <br><textarea rows="5" cols="60" name="report" placeholder="Text here"></textarea>
+					<br>
+					<input type="submit" value="Post">
+				</form>
+				<br><br>
+	</div>
+	<div class="offest-xl-1">
+	<!-- User trip reports -->
+							{% for row in rows %}
+							<tr>
+									<th></th>
+									<th></th>
+							</tr>
+							<tr class = "border">
+								<div class = "rounded-box-small blockquote">
+									<td class = "border">
+										{% if row.image|length >0 %}
+										<img class="img-thumbnail" src="{{row.image}}" alt="error">
+										{% endif %}
+									</td>
+										<td class = "border"><strong>{{row.name}}:</strong>
+										{{row.location}} on {{row.date}} <br>
+										<strong>Rating: </strong>{{row.rating}}<br>
+										<strong>Danger level:</strong> {{row.danger}}<br>
+										<strong>Report:</strong> {{row.report}}</td>
+								</div>
+							</tr>
+							{% endfor %}
+</div>
+<br>
+
+				{% else %}
+					<div class = "offset-xl-1">
+					<table class = "table format">
+						<tr>
+						<td><img src="static/Logo.png" alt="Logo" height=500 width=500></td>
+						<td><h1>Welcome</h1><p>You must be logged in to submit or view user trip reports.</p><br>
+						<button><a href="login">Log-in</a></button> or <button><a href="signup">Sign up</a></button></td>
+						</tr>
+					</table>
+				{% endif %}
+				</div>
+
+				<!-- Twitter feeds from PNW ski resorts -->
+				<table class = "table format offset-xl-1">
+				<tr>
+				<td class="offset-xl-1">
+					<h2>Steven's Pass</h2>
+					<a class="twitter-timeline" data-width="300" data-height="500" data-theme="dark" data-link-color="#19CF86" href="https://twitter.com/StevensPass?ref_src=twsrc%5Etfw">Tweets by Stevens</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+					<h5> ⛷ ⛷ ⛷ ⛷ ⛷ ⛷ ⛷ ⛷ ⛷ </h5>
+				</td>
+				<td>
+					<h2>Crystal Mountain</h2>
+					<a class="twitter-timeline" data-width="300" data-height="500" data-theme="dark" data-link-color="#19CF86" href="https://twitter.com/CrystalMt?ref_src=twsrc%5Etfw">Tweets by CrystalMt</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+					<h5> ⛷ ⛷ ⛷ ⛷ ⛷ ⛷ ⛷ ⛷ ⛷ </h5>
+				</td>
+				<td>
+					<h2>Snoqualmie Summit</h2>
+					<a class="twitter-timeline" data-width="300" data-height="500" data-theme="dark" data-link-color="#19CF86" href="https://twitter.com/SummitSnow411?ref_src=twsrc%5Etfw">Tweets by Summit@Snoqualmie</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+					<h5> ⛷ ⛷ ⛷ ⛷ ⛷ ⛷ ⛷ ⛷ ⛷ </h5>
+				</td>
+				</tr>
+				</table>
+
+				<!-- Updating map of road conditions -->
+				<div class = "offset-xl-1">
+				<h3>Road Condition Reports:</h3>
+				<a href = "https://wsdot.com/travel/real-time/mountainpasses"><u>Click here for an interactive map of the mountain passes</u></a>
+				</div><br>
+
+				<!-- Table with road conditions -->
+				<table class = "report-table big-table offset-xl-1">
+					<tr>
+							{% for title in titles %}
+										<td class = "report-table"><strong>{{title}}:</strong></td>
+							{% endfor %}
+					</tr>
+					<tr>
+						{% for advisory in advisories %}
+								{% if advisory == True %}
+									<td class = "report-table">Active travel advisory</td>
+								{% else %}
+									<td class = "report-table">NO advisory</td>
+								{% endif %}
+						{% endfor %}
+					</tr>
+
+					<tr>
+						{% for condition in conditions %}
+								<td class = "report-table">{{condition}}</td>
+						{% endfor %}
+					</tr>
+
+					<tr>
+						{% for temperature in temperatures %}
+						{% if temperature == None %}
+							<td class = "report-table">Not available</td>
+						{% else %}
+							<td class = "report-table">{{temperature}} °F</td>
+						{% endif %}
+						{% endfor %}
+					</tr>
+				</table>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Ski PNW</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="static/style.css" rel="stylesheet" />
+				<link rel="icon" type="image/png" href="static/Logo.png">
+			{% block title %}
+		{% endblock %}
+	</head>
+	<body>
+		<!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about">About</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="chatroom">Chat Room</a></li>
+												<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="tripreport">Trip Reports</a></li>
+												<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="market">Purchase/Sell Gear</a></li>
+												<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="media">Media</a></li>
+												{% block login %}
+												{% endblock %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+				{% block textbody %}
+				{% endblock %}
+				<!-- Footer for website that dispalys on every page -->
+				<footer class="border-top">
+		            <div class="container px-4 px-lg-5">
+		                <div class="small text-center text-muted fst-italic">Last Updated November 2021</div>
+		            </div>
+		        </footer>
+		        <!-- Bootstrap core JS-->
+		        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+		        <!-- Core theme JS-->
+		        <script src="js/scripts.js"></script>
+	</body>
+</html>

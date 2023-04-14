@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+<!-- Displays different menu options based on whether user is logged in -->
+{% block login %}
+	{% if username != None %}
+		<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="logout">Log Out</a></li>
+	{% else %}
+		<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="signup">Sign Up</a></li>
+		<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="login">Log In</a></li>
+	{% endif %}
+{% endblock %}
+
+<!-- Print out title of page -->
+{% block textbody %}
+	<header class="masthead" style="background-image: url('static/logo3.jpg')">
+			<div class="container position-relative px-4 px-lg-5">
+						<div class="page-heading">
+						<h1>Ski PNW</h1>
+						<span class="subheading">Where mountain people meet</span>
+				</div>
+			</div>
+	</header>
+
+<!-- Main text -->
+	<div class = "offset-xl-1">
+	<table class = "table format">
+		<tr>
+			<td><img src="static/Logo.png" alt="Logo" height=500 width=500></td>
+			<td><h1>Welcome</h1><p>
+				What's up?? Welcome to Ski PNW, a website that provides all of
+				your skiing information and needs for the season at no cost
+				(except free passes, but we will work on that). Connect with other users
+				through the chatroom or pick your next PNW resort destination (or undercover backountry
+				adventure) by browsing the trip reports. Looking for gear in good
+				condition at a low price? Hoping to sell last year's skis? Head over to the
+				marketplace! Also, submit your coolest tricks on the media page for a chance
+				to be featured in our season highlights newsletter. We have news about road conditions,
+				the snow forecast, and avalanche danger. Look below for the headlines in PNW skiing today.
+				Skiers of all ability and ages are welcome in our community. We also allow boarders,
+				on a case-by-case basis :) See you on the slopes, keep your fingers crossed for a powder day!
+				And as always, we do not have information on all dangers. So, KNOW BEFORE YOU GO.</p></td>
+		</tr>
+	</table>
+
+		<!-- Button that changes values based on whether user is logged in -->
+		{% if username != None %}
+			<button class="offset-xl-4"><a href="logout">Hey there, {{username}}! Click here to Log Out</a></button>
+		{% else %}
+			<button class="offset-xl-5"><a href="login">Log-in</a></button> or <button><a href="signup">Sign up</a></button>
+		{% endif %}
+		<hr>
+
+		<!-- Seattle weather widget from forecast7.com -->
+			<a class="weatherwidget-io" href="https://forecast7.com/en/47d61n122d33/seattle/" data-label_1="SEATTLE" data-label_2="WEATHER" data-theme="original" >SEATTLE WEATHER</a>
+			<script async src="https://weatherwidget.io/js/widget.min.js" charset="utf-8"></script>
+			<hr>
+
+			<!-- Pertinent headlines from the PNW ski community -->
+			<table class = "table">
+				<tr>
+					<td><a href = "https://www.king5.com/article/news/local/crystal-mountain-ski-resort-offers-limited-opening-this-weekend/281-98b7adfc-25d0-49f3-af9b-2531efa6a5be"><h1>Crystal Mountain ski resort offers limited opening this weekend</h1></a>
+						<p>Get those skis and snowboards waxed and ready. After more than a week of delay, one of Washington's ski resorts is preparing for limited opening this weekend.
+
+						Crystal Mountain resort near Mt. Rainier is welcoming season pass holders and youth attending ski and snowboarding lessons on Dec. 4 and 5.
+
+						The resort's Ski & Ride School lessons will be open Saturday from 9 a.m. to 2 p.m. Season pass holders will have access to certain slopes starting 2 p.m. They will also have access on Sunday from 9 a.m. to 4 p.m.</p></td>
+						<td><img src="https://images.seattletimes.com/wp-content/uploads/2019/02/02042019_Crystal-Mountain_131233.jpg?d=1560x1048" height = "300" width = "400" alt = "Error loading image"></td>
+					</tr>
+			</table>
+			<br>
+
+			<table class = "table">
+				<tr>
+					<td><a href = "https://www.king5.com/article/news/local/winter-storm-warning-cascades-snoqualmie-stevens-pass/281-b56d27fd-c16c-47a7-900d-f18d8c4d92f9"><h1>Eastbound I-90 closed as Winter Weather Warning hits Cascades</h1></a>
+						<p>SEATTLE — The eastbound lanes of Interstate 90 are closed just west of Snoqualmie Pass as a Winter Storm Warning continues to be in effect for the Cascades of Snohomish and King counties, and western Chelan County.
+
+							Chains are required for all vehicles that are not four-wheel or all-wheel drive at Snoqualmie Pass.
+
+							The warning from the National Weather Service (NWS) is in effect for areas above 2,000 feet and is expected to last through 10 a.m. Thursday.
+
+							Specific areas impacted by the warning include Darrington, Baring, Skykomish and Stevens and Snoqualmie passes.</p></td>
+						<td><img src="https://pbs.twimg.com/media/FGHiM4HVIAMfGi3?format=jpg&name=4096x4096" height = "300" width = "400" alt = "Error loading image"></td>
+				</tr>
+				</table>
+		</div>
+
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% endblock %}
+
+{% block login %}
+	{% if username != None %}
+		<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="logout">Log Out</a></li>
+	{% else %}
+		<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="signup">Sign Up</a></li>
+		<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="login">Log In</a></li>
+	{% endif %}
+{% endblock %}
+
+{% block textbody %}
+<header class="masthead" style="background-image: url('static/logo3.jpg')">
+		<div class="container position-relative px-4 px-lg-5">
+				<div class="row gx-4 gx-lg-5 justify-content-center">
+						<div class="col-md-10 col-lg-8 col-xl-7">
+								<div class="page-heading">
+										<h1>About Ski PNW</h1>
+										<span class="subheading">Keep reading to learn more about our community</span>
+								</div>
+						</div>
+				</div>
+		</div>
+</header>
+
+<!-- text about the website -->
+<div class = "offset-xl-1">
+	<h2>Who are we?</h2>
+	<p>This website was created by a young skier raised by skiers. Have questions? drop
+	them in the chatroom and somebody is bound to answer. Don't worry, nobody will call you a Jerry :)
+	We hope you can use our website to find new ski spots, connect with other skiers, nab some sweet great at low prices, and
+	watch your awesome fellow skiers on our media page.</p>
+
+	<h2>Our Mission</h2>
+	<p>We want to create an inviting platform for all members of the ski community. The demographic
+	of skiers is becoming more diverse and we want to form a community where everybody can unite.</p>
+
+	<h2>Contact:</h2>
+	<p><a href="https://forms.gle/EfgXvbynJs5NXg6f9">Fill out this form if you need to contact us</a></p>
+	<br>
+
+	<h2>More like us: </h2>
+	<p><a href="http://www.2122.lakeside-cs.org/CateLewison/CSS/"><u>Lakeside Outdoors Club</u></a><br>
+	<a href = "https://www.curated.com/journal/255000/the-survivors-guide-to-skiing-and-stoke-in-the-pnw"><u>PNW Skiing Guide</u></a></p>
+</div>
+{% endblock %}

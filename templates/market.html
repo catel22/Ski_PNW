@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+<!-- Displays different menu options based on whether user is logged in -->
+{% block login %}
+	{% if username != None %}
+		<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="logout">Log Out</a></li>
+	{% else %}
+		<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="signup">Sign Up</a></li>
+		<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="login">Log In</a></li>
+	{% endif %}
+{% endblock %}
+
+{% block textbody %}
+	<header class="masthead" style="background-image: url('static/logo2.jpeg')">
+			<div class="container position-relative px-4 px-lg-5">
+						<div class="page-heading">
+						<h1>Ski PNW Marketplace</h1>
+						<span class="subheading">Sell some stuff</span>
+				</div>
+			</div>
+	</header>
+
+	<!-- Form for user to fill out a trip report if they are logged in -->
+	<div class = "offset-xl-1">
+			{% if username != None %}
+				<h4>Hi {{username}}! Submit items to sell below.</h4>
+				<form method="POST" action="market" class="form-floating">
+					Contact: <input type="text" name="contact"> <br>
+					Selling: <input type="text" name="selling"> <br>
+					Price: <input type="text" name="price"> <br>
+					Image (optional): <input type="text" name="image"> <br>
+					Other notes: <br><textarea rows="5" cols="60" name="notes" placeholder="Text here"></textarea>
+					<br>
+					<input type="submit" value="Post">
+				</form>
+				<br><br>
+	</div>
+	<div class="offest-xl-1">
+	<!-- User media -->
+							{% for row in rows %}
+							<tr>
+									<th></th>
+									<th></th>
+							</tr>
+							<tr class = "border">
+								<div class = "rounded-box-small blockquote">
+									<td class = "border">
+										{% if row.image|length >0 %}
+										<img class="img-thumbnail" src="{{row.image}}" alt="error">
+										{% endif %}
+									</td>
+										<td class = "border"><strong>{{row.name}}:</strong>
+										<strong>Selling: </strong>{{row.selling}}<br>
+										<strong>Price: </strong>{{row.price}}<br>
+										<strong>Contact:</strong> {{row.contact}}<br>
+										<strong>Notes:</strong> {{row.notes}}</td>
+								</div>
+							</tr>
+							{% endfor %}
+		</div>
+<br>
+
+				{% else %}
+					<div class = "offset-xl-1">
+					<table class = "table format">
+						<tr>
+							<td><img src="static/Logo.png" alt="Logo" height=500 width=500></td>
+							<td><h1>Welcome</h1><p>You must be logged in to sell on or view the market.</p><br>
+							<button><a href="login">Log-in</a></button> or <button><a href="signup">Sign up</a></button></td>
+						</tr>
+						</table>
+					{% endif %}
+				</div>
+
+{% endblock %}

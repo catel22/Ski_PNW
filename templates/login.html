@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block textbody %}
+		{% if error %}
+		<p class="error">Error: please try again.</p>
+		{% endif %}
+		<header class="masthead" style="background-image: url('static/logo3.jpg')">
+				<div class="container position-relative px-4 px-lg-5">
+						<div class="row gx-4 gx-lg-5 justify-content-center">
+								<div class="col-md-10 col-lg-8 col-xl-7">
+										<div class="page-heading">
+												<h1>Log In</h1>
+												<span class="subheading">Welcome back shredder</span>
+										</div>
+								</div>
+						</div>
+				</div>
+		</header>
+
+		<!-- login form -->
+		<div class = "offset-xl-1">
+		<h1>Login to an existing account</h1>
+
+		<form method="POST" action="login" class="form-floating">
+			Username: <input type="text" name="username"> <hr>
+			Password:  <input type="password" name="password"> <hr>
+			<input type="submit" value="Login!">
+		</form>
+		</div>
+{% endblock %}

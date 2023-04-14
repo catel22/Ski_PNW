@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% endblock %}
+
+<!-- Displays different menu options based on whether user is logged in -->
+{% block login %}
+	{% if username != None %}
+		<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="logout">Log Out</a></li>
+	{% else %}
+		<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="signup">Sign Up</a></li>
+		<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="login">Log In</a></li>
+	{% endif %}
+{% endblock %}
+
+<!-- Title of web page -->
+{% block textbody %}
+	<header class="masthead" style="background-image: url('static/logo3.jpg')">
+			<div class="container position-relative px-4 px-lg-5">
+					<div class="row gx-4 gx-lg-5 justify-content-center">
+							<div class="col-md-10 col-lg-8 col-xl-7">
+									<div class="page-heading">
+											<h1>Chat Room</h1>
+											<span class="subheading">Welcome to the conversation</span>
+									</div>
+							</div>
+					</div>
+			</div>
+	</header>
+
+	<!-- Form for the user to submit a chat if they are logged in -->
+		<div class = "offset-xl-1">
+			{% if username != None %}
+					Hi {{username}}! Submit a chat below.
+					<form method="POST" action="chatroom" class="form-floating">
+						<textarea rows="5" cols="60" name="textchat" placeholder="Enter text"></textarea>
+						<br>
+						<input type="submit" value="Post">
+					</form>
+					<br>
+
+					<!-- Print out chats from other users -->
+					<h2>Recent chats:</h2>
+						{% for row in rows %}
+							<tr class = "border">
+									<div class = "rounded-box blockquote">
+									<td class = "border"><strong>{{row.name}} on {{row.date}}:</strong></td><br>
+									<td class = "border">{{row.chat}}</td>
+									<br><br>
+									<!-- likes is not a functioning feature
+									<td class = "border">Likes:{{row.likes}}</td><br>
+									<img src="static/like-symbol.png" height = "50" width = "50">
+									-->
+									</div>
+							</tr>
+						{% endfor %}
+				<!-- User cannot access or view content unless logged in -->
+			{% else %}
+			<div class = "offset-xl-1">
+				<table class = "table format">
+					<tr>
+						<td><img src="static/Logo.png" alt="Logo" height=500 width=500></td>
+						<td><h1>Welcome</h1><p>You must be logged in to submit or view chats.</p><br>
+						<button><a href="login">Log-in</a></button> or <button><a href="signup">Sign up</a></button></td>
+					</tr>
+					</table>
+				{% endif %}
+			</div>
+
+{% endblock %}

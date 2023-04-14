@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block textbody %}
+<header class="masthead" style="background-image: url('static/logo3.jpg')">
+		<div class="container position-relative px-4 px-lg-5">
+				<div class="row gx-4 gx-lg-5 justify-content-center">
+						<div class="col-md-10 col-lg-8 col-xl-7">
+								<div class="page-heading">
+										<h1>Join our community!</h1>
+										<span class="subheading">Welcome to Ski PNW</span>
+								</div>
+						</div>
+				</div>
+		</div>
+</header>
+
+<!-- Signup form -->
+<div class = "offset-xl-1">
+		<h1>Sign up for a new account</h1>
+
+		<form method="POST" action="signup">
+		<div class = "form-floating">
+			First name: <input type="text" name="firstName"> <br>
+			Last name: <input type="text" name="lastName"> <br>
+			Email: <input type="text" name="email" required> <br>
+			Username: <input type="text" name="username" required> <br>
+			Password:  <input type="password" name="password" required> <br>
+			<input type="submit" value="Sign up!">
+		</div>
+		</form>
+	</div>
+{% endblock %}

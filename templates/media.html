@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+<!-- Displays different menu options based on whether user is logged in -->
+{% block login %}
+	{% if username != None %}
+		<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="logout">Log Out</a></li>
+	{% else %}
+		<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="signup">Sign Up</a></li>
+		<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="login">Log In</a></li>
+	{% endif %}
+{% endblock %}
+
+{% block textbody %}
+	<header class="masthead" style="background-image: url('static/logo3.jpg')">
+		<div class="container position-relative px-4 px-lg-5">
+			<div class="page-heading">
+				<h1>Media</h1>
+				<span class="subheading">See our cool content</span>
+			</div>
+		</div>
+	</header>
+
+	<div class = "offset-xl-1">
+
+	<!-- Form for user to fill out a trip report if they are logged in -->
+	{% if username != None %}
+		<h4>Hi {{username}}! Submit your media.</h4>
+		<form method="POST" action="media" class="form-floating">
+			<p>Media type:</p>
+			<select id="mediaType" name="mediaType">
+			  <option value="video">Video</option>
+			  <option value="image">Image</option>
+			</select> <br>
+			Image or Video link: <input type="text" name="media"> <br>
+			Caption or other notes: <br><textarea rows="5" cols="60" name="caption" placeholder="Text here"></textarea><br>
+			<input type="submit" value="Post">
+		</form>
+		<br><br>
+	{% endif %}
+
+	</div>
+
+	<div class = "offset-xl-1">
+		<!-- Print out media-->
+		<h2><u>Videos</u></h2>
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/YB32IE1kbvs" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					<br><p>Skiing video</p><br><br><hr>
+
+		<h2><u>Photos</u></h2>
+			<img src="static/Logo.png" alt="Logo" height=500 width=500>
+			<br><p>Ski PNW Logo</p>
+	</div>
+{% endblock %}
